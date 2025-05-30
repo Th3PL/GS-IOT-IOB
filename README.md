@@ -8,14 +8,14 @@ Por meio de **reconhecimento de gestos utilizando visão computacional (MediaPip
 
 ## ✋🖐️🆘 Demonstração dos Gestos
 
-| Gesto                         | Ação                                        | Emoji          |
-|-------------------------------|----------------------------------------------|----------------|
-| ✋ Mão aberta                 | SOCORRO                                     | ✋              |
-| ✋✋ Duas mãos abertas         | ALERTA MÁXIMO (Prioridade Máxima)            | ✋✋             |
-| ☝️ Um dedo levantado         | ATENÇÃO                                     | ☝️             |
-| ✌️ Dois dedos (índice e médio)| AJUDA TÉCNICA                               | ✌️             |
-| 👌 OK (polegar + indicador)   | CONFIRMAÇÃO                                 | 👌              |
-| 🤚 Palma para cima            | SOLICITAÇÃO DE RECURSOS MATERIAIS            | 🤚             |
+| Gesto                          | Ação                                        |
+|-------------------------------|----------------------------------------------|
+| ✋ Mão aberta                  | SOCORRO                                     |
+| ✋✋ Duas mãos abertas          | ALERTA MÁXIMO (Prioridade Máxima)            |
+| ☝️ Um dedo levantado          | ATENÇÃO                                     |
+| ✌️ Dois dedos (índice e médio) | AJUDA TÉCNICA                               |
+| 👌 OK (polegar + indicador)    | CONFIRMAÇÃO                                 |
+| 🤚 Palma para cima             | SOLICITAÇÃO DE RECURSOS MATERIAIS            |
 
 ## 🚀 Acesso Rápido
 
@@ -38,15 +38,14 @@ Por meio de **reconhecimento de gestos utilizando visão computacional (MediaPip
 
 ### 🔥 Diagrama de Funcionamento:
 
-![Diagrama do EchoHands](./docs/diagrama_echohands.png)
+![Diagrama do EchoHands](./img/diagrama.png)
 
 **Fluxo:**  
 1. Usuário realiza um gesto →  
 2. Webcam detecta →  
-3. Python + MediaPipe classifica o gesto →  
-4. Envia JSON via Serial →  
-5. Arduino recebe →  
-6. Aciona buzzer, LEDs e LCD conforme o gesto.
+3. Python + MediaPipe classifica o gesto →   
+4. Arduino recebe →  
+5. Aciona buzzer, LEDs e LCD conforme o gesto.
 
 ## 🔌 Foto do Circuito Montado
 
