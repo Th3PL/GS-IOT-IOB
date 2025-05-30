@@ -50,7 +50,7 @@ Por meio de **reconhecimento de gestos utilizando visão computacional (MediaPip
 
 ## 🔌 Foto do Circuito Montado
 
-![Circuito Montado](./docs/foto_circuito_echohands.png)
+![Circuito Montado](./img/circuito.jpeg)
 
 ## ✨ Créditos
 
