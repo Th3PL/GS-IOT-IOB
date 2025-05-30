@@ -5,24 +5,20 @@ import time
 import json
 import math
 
-# === Configurar a porta serial ===
 try:
     arduino = serial.Serial('/dev/ttyUSB0', 9600, timeout=0.5)
-    time.sleep(2)  # Aguarda inicialização do Arduino
-    print("✅ Conectado ao Arduino.")
+    time.sleep(2) 
+    print("Conectado ao Arduino.")
 except Exception as e:
-    print(f"⚠️ Não foi possível conectar ao Arduino: {e}")
+    print(f"Não foi possível conectar ao Arduino: {e}")
     arduino = None
 
-# === Inicializar Mediapipe ===
 mp_hands = mp.solutions.hands
 mp_draw = mp.solutions.drawing_utils
 
-# === Funções Auxiliares ===
 def dedos_levantados(hand_landmarks, hand_label):
     dedos = []
 
-    # Polegar
     if hand_label == "Right":
         dedos.append(1 if hand_landmarks.landmark[mp_hands.HandLandmark.THUMB_TIP].x <
                          hand_landmarks.landmark[mp_hands.HandLandmark.THUMB_IP].x else 0)
@@ -30,7 +26,6 @@ def dedos_levantados(hand_landmarks, hand_label):
         dedos.append(1 if hand_landmarks.landmark[mp_hands.HandLandmark.THUMB_TIP].x >
                          hand_landmarks.landmark[mp_hands.HandLandmark.THUMB_IP].x else 0)
 
-    # Outros dedos
     dedos.extend([
         1 if hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP].y <
              hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_PIP].y else 0,
@@ -85,10 +80,9 @@ def putTextWithBackground(img, text, pos, font, scale, color, thickness):
     cv2.putText(img, text, pos, font, scale, color, thickness, cv2.LINE_AA)
 
 
-# === Webcam ===
 cap = cv2.VideoCapture(0)
-cap.set(3, 640)  # Largura
-cap.set(4, 480)  # Altura
+cap.set(3, 640) 
+cap.set(4, 480) 
 
 cv2.namedWindow("Video", cv2.WINDOW_NORMAL)
 cv2.resizeWindow("Video", 640, 480)
@@ -105,7 +99,7 @@ with mp_hands.Hands(
     while cap.isOpened():
         ret, frame = cap.read()
         if not ret:
-            print("❌ Erro ao capturar imagem da webcam")
+            print("Erro ao capturar imagem da webcam")
             break
 
         frame = cv2.flip(frame, 1)
@@ -157,22 +151,20 @@ with mp_hands.Hands(
         putTextWithBackground(frame, f'FPS: {int(fps)}', (530, 20),
                               cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 0), 2)
 
-        # === Envio para Arduino ===
         if arduino is not None:
             data = {"gesto": gesto_final}
             pacote = json.dumps(data) + "\n"
             try:
                 arduino.write(pacote.encode('utf-8'))
-                arduino.flush()  # Limpa buffer de saída para enviar na hora
-                print("📤 Enviado:", pacote.strip())
+                arduino.flush()
+                print("Enviado:", pacote.strip())
             except Exception as e:
-                print(f"⚠️ Erro ao enviar dados: {e}")
+                print(f"Erro ao enviar dados: {e}")
 
         cv2.imshow("Video", frame)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
 
-# === Finalizar ===
 cap.release()
 cv2.destroyAllWindows()
 if arduino is not None:

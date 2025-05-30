@@ -15,7 +15,6 @@ unsigned long ultimoMillis = 0;
 const long intervaloPisca = 500;
 bool estadoLed = LOW;
 
-// Estados dos gestos
 String gestoAtual = "IDLE";
 
 void setup() {
@@ -35,11 +34,9 @@ void setup() {
 
 void loop() {
   lerSerial();
-
   atualizarLEDs();
 }
 
-// 📥 Ler dados da Serial
 void lerSerial() {
   while (Serial.available()) {
     char inChar = (char)Serial.read();
@@ -58,7 +55,6 @@ void lerSerial() {
   }
 }
 
-// 🔧 Processar JSON recebido
 void processarJson(String jsonString) {
   StaticJsonDocument<200> doc;
 
@@ -73,9 +69,9 @@ void processarJson(String jsonString) {
   gestoAtual = String(gesto);
 
   lcd.clear();
+  lcd.setCursor(0, 0);
   lcd.print(gestoAtual);
 
-  // 🔊 Sons apenas nos gestos críticos
   if (gestoAtual == "SOCORRO") {
     somSocorro();
   } else if (gestoAtual == "ALERTA_MAXIMO") {
@@ -83,11 +79,9 @@ void processarJson(String jsonString) {
   }
 }
 
-// ✨ Atualiza LEDs sem travar
 void atualizarLEDs() {
   unsigned long agora = millis();
 
-  // SOCORRO e ALERTA_MAXIMO → 🔴 Pisca, 🟢 apagado
   if (gestoAtual == "SOCORRO" || gestoAtual == "ALERTA_MAXIMO") {
     digitalWrite(ledVerde, LOW);
     if (agora - ultimoMillis >= intervaloPisca) {
@@ -97,7 +91,6 @@ void atualizarLEDs() {
     }
   }
 
-  // AJUDA_TECNICA, ATENCAO, OK, RECURSOS, SOLICITACAO → 🟢 Pisca, 🔴 apagado
   else if (
     gestoAtual == "AJUDA_TECNICA" ||
     gestoAtual == "ATENCAO" ||
@@ -106,36 +99,22 @@ void atualizarLEDs() {
     gestoAtual == "SOLICITACAO"
   ) {
     digitalWrite(ledVermelho, LOW);
-    if (agora - ultimoMillis >= intervaloPisca) {
-      ultimoMillis = agora;
-      estadoLed = !estadoLed;
-      digitalWrite(ledVerde, estadoLed);
-    }
+    digitalWrite(ledVerde, HIGH);
   }
 
-  // Outros → 🟢 aceso fixo, 🔴 apagado
   else {
-    digitalWrite(ledVerde, HIGH);
+    digitalWrite(ledVerde, LOW);
     digitalWrite(ledVermelho, LOW);
   }
 }
 
-// 🔊 Som SOCORRO (2 bips agudos rápidos)
 void somSocorro() {
-  for (int i = 0; i < 2; i++) {
-    tone(pinoBuzzer, 2000);
-    delay(200);
-    noTone(pinoBuzzer);
-    delay(150);
-  }
+  tone(pinoBuzzer, 1000, 500);
 }
 
-// 🔊 Som ALERTA MÁXIMO (3 bips graves rápidos)
 void somAlertaMaximo() {
   for (int i = 0; i < 3; i++) {
-    tone(pinoBuzzer, 1000);
-    delay(150);
-    noTone(pinoBuzzer);
-    delay(150);
+    tone(pinoBuzzer, 1500, 300);
+    delay(400);
   }
 }
