@@ -19,9 +19,9 @@ Por meio de **reconhecimento de gestos utilizando visão computacional (MediaPip
 
 ## 🚀 Acesso Rápido
 
-- 🔗 [**Código Python – Detecção de Gestos**](./python/)  
-- 🔗 [**Código Arduino – Interface de Sinalização**](./arduino/)  
-- 🎥 [**Vídeo no YouTube – Demonstração e Explicação**](https://youtube.com/link-do-video)  
+- 🔗 [**Código Python – Detecção de Gestos**](./main.py/)  
+- 🔗 [**Código Arduino – Interface de Sinalização**](./arduino.ino/)  
+- 🎥 [**Vídeo no YouTube – Demonstração e Explicação**](https://youtube.com)  
 
 ## 🧠 Tecnologias Utilizadas
 
@@ -54,9 +54,9 @@ Por meio de **reconhecimento de gestos utilizando visão computacional (MediaPip
 ## ✨ Créditos
 
 Desenvolvido por:  
-- ⚡ João Pedro Borsato Cruz – 550294
-- 🐶 Maria Fernanda Vieira de Camargo – 97956
-- 🚀 Pedro Lucas de Andrade Nunes – 550366
+- ⚡ João Pedro Borsato Cruz – RM550294
+- 💫 Maria Fernanda Vieira de Camargo – RM97956
+- 🚀 Pedro Lucas de Andrade Nunes – RM550366
 
 ## 🚩 Referências
  
