@@ -5,6 +5,7 @@ import time
 import json
 import math
 
+# Conectar ao Arduino
 try:
     arduino = serial.Serial('/dev/ttyUSB0', 9600, timeout=0.5)
     time.sleep(2) 
@@ -39,23 +40,19 @@ def dedos_levantados(hand_landmarks, hand_label):
 
     return dedos
 
-
 def distancia_entre_pontos(p1, p2):
     return math.hypot(p1.x - p2.x, p1.y - p2.y)
-
 
 def calcular_escala_mao(landmarks):
     p1 = landmarks.landmark[mp_hands.HandLandmark.WRIST]
     p2 = landmarks.landmark[mp_hands.HandLandmark.MIDDLE_FINGER_MCP]
     return distancia_entre_pontos(p1, p2)
 
-
 def classificar_gesto(landmarks, dedos, hand_label):
     dist_polegar_indice = distancia_entre_pontos(
         landmarks.landmark[mp_hands.HandLandmark.THUMB_TIP],
         landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP]
     )
-
     escala = calcular_escala_mao(landmarks)
     limite_ok = 0.25 * escala
 
@@ -79,13 +76,12 @@ def putTextWithBackground(img, text, pos, font, scale, color, thickness):
     cv2.putText(img, text, (pos[0]+1, pos[1]+1), font, scale, (0,0,0), thickness+2, cv2.LINE_AA)
     cv2.putText(img, text, pos, font, scale, color, thickness, cv2.LINE_AA)
 
-
 cap = cv2.VideoCapture(0)
-cap.set(3, 640) 
-cap.set(4, 480) 
+cap.set(3, 640)  
+cap.set(4, 480)  
 
 cv2.namedWindow("Video", cv2.WINDOW_NORMAL)
-cv2.resizeWindow("Video", 640, 480)
+cv2.resizeWindow("Video", 800, 600)  
 cv2.moveWindow("Video", 100, 100)
 
 prev_time = 0
@@ -162,6 +158,7 @@ with mp_hands.Hands(
                 print(f"Erro ao enviar dados: {e}")
 
         cv2.imshow("Video", frame)
+        
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
 

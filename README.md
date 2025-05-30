@@ -21,7 +21,10 @@ Por meio de **reconhecimento de gestos utilizando visão computacional (MediaPip
 
 - 🔗 [**Código Python – Detecção de Gestos**](./main.py/)  
 - 🔗 [**Código Arduino – Interface de Sinalização**](./arduino.ino/)  
-- 🎥 [**Vídeo no YouTube – Demonstração e Explicação**](https://youtube.com)  
+- 🎥 [**Vídeo no YouTube – Demonstração e Explicação**](https://youtu.be/t7rfcK2M6oc)  
+
+## ▶️ Demonstração do EchoHands com vídeos externos
+![Demonstração do EchoHands](./docs/testes-externos.gif)
 
 ## 🧠 Tecnologias Utilizadas
 
@@ -38,7 +41,7 @@ Por meio de **reconhecimento de gestos utilizando visão computacional (MediaPip
 
 ### 🔥 Diagrama de Funcionamento:
 
-![Diagrama do EchoHands](./img/diagrama.png)
+![Diagrama do EchoHands](./docs/img/diagrama.png)
 
 **Fluxo:**  
 1. Usuário realiza um gesto →  
@@ -49,7 +52,7 @@ Por meio de **reconhecimento de gestos utilizando visão computacional (MediaPip
 
 ## 🔌 Foto do Circuito Montado
 
-![Circuito Montado](./img/circuito.jpeg)
+![Circuito Montado](./docs/img/circuito.jpeg)
 
 ## ✨ Créditos
 
